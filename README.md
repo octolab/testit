@@ -1,6 +1,6 @@
-> # 🧩 Tool
+> # 👨‍🍳 testit
 >
-> Template for typical Go tool.
+> Extended `go test` for better experience.
 
 [![Build][build.icon]][build.page]
 [![Documentation][docs.icon]][docs.page]
@@ -12,7 +12,10 @@
 ## 💡 Idea
 
 ```bash
-$ tool do action
+$ testit go compile
+# -> go test -run ^Fake$$ ./... | { grep -v 'no test files' | grep -v 'no tests to run' || true }
+$ testit go --colored --panicparse [testflag]
+# -> gotest [testflag] | panicparse // with color preserve
 ```
 
 A full description of the idea is available [here][design.page].
@@ -62,27 +65,23 @@ $ :binary completion bash|fish|powershell|zsh > /path/to/completions/...
 $ source <(:binary completion bash|fish|powershell|zsh)
 ```
 
-## 🤲 Outcomes
-
-...
-
 <p align="right">made with ❤️ for everyone</p>
 
 [awesome.icon]:     https://awesome.re/mentioned-badge.svg
-[build.page]:       https://travis-ci.com/:owner/:repository
-[build.icon]:       https://travis-ci.com/:owner/:repository.svg?branch=master
-[coverage.page]:    https://codeclimate.com/github/:owner/:repository/test_coverage
+[build.page]:       https://travis-ci.com/octolab/testit
+[build.icon]:       https://travis-ci.com/octolab/testit.svg?branch=master
+[coverage.page]:    https://codeclimate.com/github/octolab/testit/test_coverage
 [coverage.icon]:    https://api.codeclimate.com/v1/badges/c570179a9335c747e77c/test_coverage
 [design.page]:      https://www.notion.so/33715348cc114ea79dd350a25d16e0b0?r=0b753cbf767346f5a6fd51194829a2f3
-[docs.page]:        https://pkg.go.dev/:module/:version
+[docs.page]:        https://pkg.go.dev/go.octolab.org/toolset/testit
 [docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
-[mirror.page]:      https://bitbucket.org/kamilsk/go-tool
+[mirror.page]:      https://bitbucket.org/kamilsk/testit
 [mirror.icon]:      https://img.shields.io/badge/mirror-bitbucket-blue
-[promo.page]:       https://github.com/:owner/:repository
-[quality.page]:     https://goreportcard.com/report/:module
-[quality.icon]:     https://goreportcard.com/badge/go.octolab.org
+[promo.page]:       https://github.com/octolab/testit
+[quality.page]:     https://goreportcard.com/report/go.octolab.org/toolset/testit
+[quality.icon]:     https://goreportcard.com/badge/go.octolab.org/toolset/testit
 [template.page]:    https://github.com/octomation/go-tool
 [template.icon]:    https://img.shields.io/badge/template-go--tool-blue
 
-[_]:                https://img.shields.io/sourcegraph/rrc/github.com/:owner/:repository
+[_]:                https://img.shields.io/sourcegraph/rrc/github.com/octolab/testit
 [egg]:              https://github.com/kamilsk/egg
