@@ -5,16 +5,19 @@ import "github.com/spf13/cobra"
 // New returns the new root command.
 func New() *cobra.Command {
 	command := cobra.Command{
-		Use:   "%template%",
-		Short: "%template%",
-		Long:  "%template%",
+		Use:   "testit",
+		Short: "extended `go test` for better experience",
+		Long:  "Extended `go test` for better experience.",
 
 		Args: cobra.NoArgs,
 
 		SilenceErrors: false,
 		SilenceUsage:  true,
 	}
-	/* configure instance */
-	command.AddCommand( /* related commands */ )
+
+	command.AddCommand(
+		Golang(),
+	)
+
 	return &command
 }
