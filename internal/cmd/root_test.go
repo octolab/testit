@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	. "tool/internal/cmd"
+	. "go.octolab.org/toolset/testit/internal/cmd"
 )
 
 func TestNew(t *testing.T) {

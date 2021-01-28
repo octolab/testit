@@ -1,4 +1,4 @@
-module tool
+module go.octolab.org/toolset/testit
 
 go 1.15
 
