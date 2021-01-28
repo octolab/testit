@@ -12,7 +12,7 @@
 ## 💡 Idea
 
 ```bash
-$ testit go compile
+$ testit go compile ./...
 # -> go test -run ^Fake$$ ./... | { grep -v 'no test files' | grep -v 'no tests to run' || true }
 $ testit go --colored --panicparse [testflag]
 # -> gotest [testflag] | panicparse // with color preserve

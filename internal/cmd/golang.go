@@ -15,8 +15,8 @@ import (
 func Golang() *cobra.Command {
 	main := cobra.Command{
 		Use:   "go",
-		Short: "`go test` proxy with extra features",
-		Long:  "`go test` proxy with extra features.",
+		Short: "proxy for go test with extra features",
+		Long:  "Proxy for go test with extra features.",
 
 		Args: cobra.NoArgs,
 	}
@@ -26,10 +26,11 @@ func Golang() *cobra.Command {
 		Short: "make sure that all code is compiled.",
 		Long:  "Make sure that all code is compiled.",
 
-		Args: cobra.NoArgs,
-
 		RunE: func(cmd *cobra.Command, args []string) error {
-			bin := exec.CommandContext(cmd.Context(), "go", "test", "-run", "^Fake$$", "./...")
+			if len(args) == 0 {
+				args = append(args, "./...")
+			}
+			bin := exec.CommandContext(cmd.Context(), "go", append([]string{"test", "-run", "^Fake$$"}, args...)...)
 			bin.Stderr = cmd.ErrOrStderr()
 			reader, err := bin.StdoutPipe()
 			if err != nil {
