@@ -23,7 +23,7 @@ func Golang() *cobra.Command {
 
 	compile := cobra.Command{
 		Use:   "compile",
-		Short: "make sure that all code is compiled.",
+		Short: "make sure that all code is compiled",
 		Long:  "Make sure that all code is compiled.",
 
 		RunE: func(cmd *cobra.Command, args []string) error {

@@ -6,8 +6,8 @@ import "github.com/spf13/cobra"
 func New() *cobra.Command {
 	command := cobra.Command{
 		Use:   "testit",
-		Short: "extended `go test` for better experience",
-		Long:  "Extended `go test` for better experience.",
+		Short: "extended testing toolset",
+		Long:  "Extended testing toolset.",
 
 		Args: cobra.NoArgs,
 

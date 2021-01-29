@@ -1,6 +1,6 @@
 > # 👨‍🍳 testit
 >
-> Extended `go test` for better experience.
+> Extended testing toolset.
 
 [![Build][build.icon]][build.page]
 [![Documentation][docs.icon]][docs.page]
@@ -33,15 +33,15 @@ A full description of the idea is available [here][design.page].
 ### Homebrew
 
 ```bash
-$ brew install :owner/tap/:binary
+$ brew install octolab/tap/testit
 ```
 
 ### Binary
 
 ```bash
-$ curl -sSfL https://raw.githubusercontent.com/:owner/:repository/master/bin/install | sh
+$ curl -sSfL https://raw.githubusercontent.com/octolab/testit/master/bin/install | sh
 # or
-$ wget -qO-  https://raw.githubusercontent.com/:owner/:repository/master/bin/install | sh
+$ wget -qO-  https://raw.githubusercontent.com/octolab/testit/master/bin/install | sh
 ```
 
 > Don't forget about [security](https://www.idontplaydarts.com/2016/04/detecting-curl-pipe-bash-server-side/).
@@ -50,9 +50,9 @@ $ wget -qO-  https://raw.githubusercontent.com/:owner/:repository/master/bin/ins
 
 ```bash
 # use standard go tools
-$ go get github.com/:owner/:repository@:version
+$ go get github.com/octolab/testit@latest
 # or use egg tool
-$ egg tools add github.com/:owner/:repository@:version
+$ egg tools add github.com/octolab/testit@latest
 ```
 
 > [egg][] is an `extended go get`.
@@ -60,9 +60,9 @@ $ egg tools add github.com/:owner/:repository@:version
 ### Shell completions
 
 ```bash
-$ :binary completion bash|fish|powershell|zsh > /path/to/completions/...
+$ testit completion bash|fish|powershell|zsh > /path/to/completions/...
 # or
-$ source <(:binary completion bash|fish|powershell|zsh)
+$ source <(testit completion bash|fish|powershell|zsh)
 ```
 
 <p align="right">made with ❤️ for everyone</p>

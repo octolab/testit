@@ -1,8 +1,8 @@
 ---
-project_name: %template%
+project_name: testit
 
 archives:
-  - id: %template%
+  - id: testit
     files:
       - LICENSE
     format: tar.gz
@@ -14,36 +14,36 @@ archives:
       linux: Linux
 
 brews:
-  - name: %template%
-    caveats: %template%
+  - name: testit
+    caveats:
     commit_author:
       name: Kamil Samigullin
       email: kamil@samigullin.info
-    description: %template%
+    description: Extended testing toolset.
     folder: Formula
-    homepage: %template%
+    homepage: https://github.com/octolab/testit
     tap:
-      owner: %template%
-      name: %template%
+      owner: octolab
+      name: homebrew-tap
     install: |
-      bin.install "%template%"
+      bin.install "testit"
 
-      output = Utils.popen_read("#{bin}/%template% completion bash")
-      (bash_completion/"%template%").write output
+      output = Utils.popen_read("#{bin}/testit completion bash")
+      (bash_completion/"testit").write output
 
-      output = Utils.popen_read("#{bin}/%template% completion fish")
-      (fish_completion/"%template%.fish").write output
+      output = Utils.popen_read("#{bin}/testit completion fish")
+      (fish_completion/"testit.fish").write output
 
-      output = Utils.popen_read("#{bin}/%template% completion zsh")
-      (zsh_completion/"_%template%").write output
+      output = Utils.popen_read("#{bin}/testit completion zsh")
+      (zsh_completion/"_testit").write output
 
       prefix.install_metafiles
     test: |
-      system "#{bin}/%template% version"
+      system "#{bin}/testit version"
 
 builds:
-  - id: %template%
-    binary: %template%
+  - id: testit
+    binary: testit
     env:
       - CGO_ENABLED=0
     flags:
@@ -62,5 +62,5 @@ checksum: { name_template: checksums.txt }
 
 release:
   github:
-    owner: %template%
-    name: %template%
+    owner: octolab
+    name: testit
