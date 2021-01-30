@@ -1,0 +1,5 @@
+FAIL	testdata/nocompile [build failed]
+?   	testdata/nofiles	[no test files]
+ok  	testdata/notests	(cached) [no tests to run]
+ok  	testdata/panicked	(cached) [no tests to run]
+FAIL

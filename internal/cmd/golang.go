@@ -1,15 +1,12 @@
 package cmd
 
 import (
-	"bufio"
-	"fmt"
-	"io"
 	"os/exec"
-	"strings"
 
 	"github.com/spf13/cobra"
 	"go.octolab.org/safe"
-	"go.octolab.org/unsafe"
+
+	"go.octolab.org/toolset/testit/internal/stream"
 )
 
 func Golang() *cobra.Command {
@@ -38,23 +35,8 @@ func Golang() *cobra.Command {
 			}
 
 			go safe.Do(bin.Run, func(err error) {})
-			scanner := bufio.NewScanner(reader)
-			scanner.Split(bufio.ScanLines)
-			for scanner.Scan() {
-				line := scanner.Text()
 
-				if strings.Contains(line, "no test files") {
-					continue
-				}
-				if strings.Contains(line, "no tests to run") {
-					continue
-				}
-
-				unsafe.DoSilent(io.Copy(cmd.OutOrStdout(), strings.NewReader(line)))
-				unsafe.DoSilent(fmt.Fprintln(cmd.OutOrStdout()))
-			}
-
-			return nil
+			return stream.GoCompileProcess(reader, cmd.OutOrStdout())
 		},
 	}
 
