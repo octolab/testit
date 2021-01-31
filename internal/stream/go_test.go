@@ -41,7 +41,7 @@ func TestGoCompileProcess(t *testing.T) {
 			require.NoError(t, err)
 
 			output := bytes.NewBuffer(nil)
-			require.NoError(t, GoCompileProcess(input, output))
+			require.NoError(t, GoTestCompile(input, output).Process())
 
 			assert.Equal(t, expected, output.Bytes())
 		})
@@ -55,6 +55,6 @@ func TestGoCompileProcess(t *testing.T) {
 		output.EXPECT().Write(gomock.Any()).Return(0, errors.New("write to broken pipe"))
 
 		input := strings.NewReader("go test output")
-		require.Error(t, GoCompileProcess(input, output))
+		require.Error(t, GoTestCompile(input, output).Process())
 	})
 }
