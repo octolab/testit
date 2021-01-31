@@ -1,9 +1,13 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"io"
+
+	"github.com/spf13/cobra"
+)
 
 // New returns the new root command.
-func New() *cobra.Command {
+func New(stderr, stdout io.Writer) *cobra.Command {
 	command := cobra.Command{
 		Use:   "testit",
 		Short: "extended testing toolset",
@@ -15,6 +19,8 @@ func New() *cobra.Command {
 		SilenceUsage:  true,
 	}
 
+	command.SetErr(stderr)
+	command.SetOut(stdout)
 	command.AddCommand(
 		Golang(),
 	)

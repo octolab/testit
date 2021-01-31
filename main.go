@@ -10,6 +10,7 @@ import (
 	"go.octolab.org/errors"
 	"go.octolab.org/safe"
 	"go.octolab.org/toolkit/cli/cobra"
+	cli "go.octolab.org/toolkit/cli/errors"
 	"go.octolab.org/unsafe"
 
 	"go.octolab.org/toolset/testit/internal/cmd"
@@ -38,9 +39,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	root := cmd.New()
-	root.SetErr(stderr)
-	root.SetOut(stdout)
+	root := cmd.New(stderr, stdout)
 	root.AddCommand(
 		cobra.NewCompletionCommand(),
 		cobra.NewVersionCommand(version, date, commit, cnf.Features...),
@@ -50,10 +49,16 @@ func main() {
 }
 
 func shutdown(err error) {
-	if recovered, is := errors.Unwrap(err).(errors.Recovered); is {
+	code := 1
+	if silent, is := errors.Unwrap(err).(cli.Silent); is {
+		code = silent.Code
+		if silent.Message != "" {
+			unsafe.DoSilent(fmt.Fprintln(stderr, silent.Message))
+		}
+	} else if recovered, is := errors.Unwrap(err).(errors.Recovered); is {
 		unsafe.DoSilent(fmt.Fprintf(stderr, "recovered: %+v\n", recovered.Cause()))
 		unsafe.DoSilent(fmt.Fprintln(stderr, "---"))
 		unsafe.DoSilent(fmt.Fprintf(stderr, "%+v\n", err))
 	}
-	exit(1)
+	exit(code)
 }

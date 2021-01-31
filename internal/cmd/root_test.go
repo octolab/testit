@@ -1,6 +1,7 @@
 package cmd_test
 
 import (
+	"io/ioutil"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -10,7 +11,7 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	root := New()
+	root := New(ioutil.Discard, ioutil.Discard)
 	require.NotNil(t, root)
 	assert.NotEmpty(t, root.Use)
 	assert.NotEmpty(t, root.Short)

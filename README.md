@@ -50,9 +50,9 @@ $ wget -qO-  https://raw.githubusercontent.com/octolab/testit/master/bin/install
 
 ```bash
 # use standard go tools
-$ go get github.com/octolab/testit@latest
+$ go get go.octolab.org/toolset/testit@latest
 # or use egg tool
-$ egg tools add github.com/octolab/testit@latest
+$ egg tools add go.octolab.org/toolset/testit@latest
 ```
 
 > [egg][] is an `extended go get`.
@@ -60,9 +60,9 @@ $ egg tools add github.com/octolab/testit@latest
 ### Shell completions
 
 ```bash
-$ testit completion bash|fish|powershell|zsh > /path/to/completions/...
+$ testit completion > /path/to/completions/...
 # or
-$ source <(testit completion bash|fish|powershell|zsh)
+$ source <(testit completion)
 ```
 
 <p align="right">made with ❤️ for everyone</p>
@@ -83,5 +83,5 @@ $ source <(testit completion bash|fish|powershell|zsh)
 [template.page]:    https://github.com/octomation/go-tool
 [template.icon]:    https://img.shields.io/badge/template-go--tool-blue
 
-[_]:                https://img.shields.io/sourcegraph/rrc/github.com/octolab/testit
+[_]:                https://img.shields.io/sourcegraph/rrc/go.octolab.org/toolset/testit
 [egg]:              https://github.com/kamilsk/egg
