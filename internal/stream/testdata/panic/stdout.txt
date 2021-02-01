@@ -1,0 +1,25 @@
+FAIL	testdata/nocompile [build failed]
+?   	testdata/nofiles	[no test files]
+ok  	testdata/notests	0.643s
+--- FAIL: TestTheGood_Divide (0.00s)
+--- FAIL: TestTheBad_Divide (0.00s)
+panic: division by zero [recovered]
+	panic: division by zero
+
+goroutine 19 [running]:
+testing.tRunner.func1.1(0x111ba60, 0x116cff0)
+	/usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1072 +0x30d
+testing.tRunner.func1(0xc000082900)
+	/usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1075 +0x41a
+panic(0x111ba60, 0x116cff0)
+	/usr/local/Cellar/go/1.15.6/libexec/src/runtime/panic.go:969 +0x1b9
+testdata/panicked.TheBad.Divide(...)
+	/Users/ksamigullin/Development/public/testit/internal/testdata/panicked/panicked.go:19
+testdata/panicked.TestTheBad_Divide(0xc000082900)
+	/Users/ksamigullin/Development/public/testit/internal/testdata/panicked/panicked_test.go:13 +0x39
+testing.tRunner(0xc000082900, 0x114df50)
+	/usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1123 +0xef
+created by testing.(*T).Run
+	/usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1168 +0x2b3
+FAIL	testdata/panicked	0.443s
+FAIL

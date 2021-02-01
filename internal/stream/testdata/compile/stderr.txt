@@ -1,3 +1,0 @@
-# testdata/nocompile_test [testdata/nocompile.test]
-nocompile/nocompile_test.go:12:5: cannot use rand.New(rand.NewSource(0)) (type *rand.Rand) as type nocompile.Interface in assignment:
-	*rand.Rand does not implement nocompile.Interface (missing Unique method)
