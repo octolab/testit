@@ -5,7 +5,6 @@ import (
 	"io"
 	"os"
 	"os/signal"
-	"syscall"
 
 	"github.com/spf13/cobra"
 	"go.octolab.org/async"
@@ -24,6 +23,42 @@ func Golang() *cobra.Command {
 		Long:  "Proxy for go test with extra features.",
 
 		DisableFlagParsing: true,
+
+		RunE: func(cmd *cobra.Command, args []string) error {
+			job := new(async.Job)
+			defer job.Wait()
+
+			ctx, cancel := context.WithCancel(cmd.Context())
+			defer cancel()
+
+			signals := make(chan os.Signal)
+			signal.Notify(signals)
+			defer signal.Stop(signals)
+
+			input, output := io.Pipe()
+			defer safe.Close(output, unsafe.Ignore)
+
+			task, err := process.GoTest(
+				ctx,
+				process.WithArgs(args),
+				process.WithCurrentEnv(),
+				process.WithSignalPropagation(ctx, signals),
+				process.WithStdin(cmd.InOrStdin()),
+				process.WithStderr(cmd.ErrOrStderr()),
+				process.WithStdout(output),
+			)
+			if err != nil {
+				return err
+			}
+
+			job.Do(stream.GoTest(input, cmd.OutOrStdout()).Process, unsafe.Ignore)
+
+			if err := task.Run(); err != nil {
+				cmd.SilenceErrors = true
+				return cli.Silent{Code: task.ProcessState.ExitCode()} // TODO:cli wrap error
+			}
+			return nil
+		},
 	}
 
 	compile := cobra.Command{
@@ -64,11 +99,8 @@ func Golang() *cobra.Command {
 			job.Do(stream.GoTestCompile(input, cmd.OutOrStdout()).Process, unsafe.Ignore)
 
 			if err := task.Run(); err != nil {
-				if ws, ok := task.ProcessState.Sys().(syscall.WaitStatus); ok {
-					err = cli.Silent{Code: ws.ExitStatus()}
-					cmd.SilenceErrors = true
-				}
-				return err
+				cmd.SilenceErrors = true
+				return cli.Silent{Code: task.ProcessState.ExitCode()} // TODO:cli wrap error
 			}
 			return nil
 		},

@@ -11,6 +11,18 @@ import (
 
 type Option = func(cmd *exec.Cmd) error
 
+func GoTest(ctx context.Context, options ...Option) (*exec.Cmd, error) {
+	cmd := exec.CommandContext(ctx, "go", "test")
+
+	for _, configure := range options {
+		if err := configure(cmd); err != nil {
+			return nil, err
+		}
+	}
+
+	return cmd, nil
+}
+
 func GoTestCompile(ctx context.Context, options ...Option) (*exec.Cmd, error) {
 	cmd := exec.CommandContext(ctx, "go", "test", "-run", "^Fake$$")
 

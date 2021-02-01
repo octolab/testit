@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"strings"
+
+	"github.com/fatih/color"
 )
 
 type Processor interface {
@@ -16,6 +18,54 @@ func (fn Process) Process() error {
 	return fn()
 }
 
+func GoTest(input Reader, output Writer) Processor {
+	const (
+		fail = color.FgHiRed
+		pass = color.FgGreen
+		skip = color.FgYellow
+	)
+
+	return Process(func() error {
+		scanner := bufio.NewScanner(input)
+		scanner.Split(bufio.ScanLines)
+		for scanner.Scan() {
+			line := scanner.Text()
+
+			var class color.Attribute
+			trimmed := strings.TrimSpace(line)
+			switch {
+			case strings.HasPrefix(trimmed, "--- FAIL"):
+				fallthrough
+			case strings.HasPrefix(trimmed, "FAIL"):
+				class = fail
+
+			case strings.HasPrefix(trimmed, "--- PASS"):
+				fallthrough
+			case strings.HasPrefix(trimmed, "PASS"):
+				fallthrough
+			case strings.HasPrefix(trimmed, "ok"):
+				class = pass
+
+			case strings.Contains(trimmed, noTestFiles):
+				fallthrough
+			case strings.Contains(trimmed, noTestsToRun):
+				fallthrough
+			case strings.HasPrefix(trimmed, "--- SKIP"):
+				class = skip
+			}
+
+			var printer = fmt.Fprintln
+			if class > 0 {
+				printer = color.New(class).Fprintln
+			}
+			if _, err := printer(output, line); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+}
+
 func GoTestCompile(input Reader, output Writer) Processor {
 	return Process(func() error {
 		scanner := bufio.NewScanner(input)
@@ -23,10 +73,10 @@ func GoTestCompile(input Reader, output Writer) Processor {
 		for scanner.Scan() {
 			line := scanner.Text()
 
-			if strings.Contains(line, "no test files") {
+			if strings.Contains(line, noTestFiles) {
 				continue
 			}
-			if strings.Contains(line, "no tests to run") {
+			if strings.Contains(line, noTestsToRun) {
 				continue
 			}
 
@@ -37,3 +87,8 @@ func GoTestCompile(input Reader, output Writer) Processor {
 		return nil
 	})
 }
+
+const (
+	noTestFiles  = "[no test files]"
+	noTestsToRun = "[no tests to run]"
+)
