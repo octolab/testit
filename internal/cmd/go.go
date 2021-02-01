@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"io"
+	"io/ioutil"
 	"os"
 	"os/signal"
 
@@ -51,7 +52,15 @@ func Golang() *cobra.Command {
 				return err
 			}
 
-			job.Do(stream.GoTest(input, cmd.OutOrStdout()).Process, unsafe.Ignore)
+			job.Do(
+				stream.Pipe(input, cmd.OutOrStdout(),
+					stream.GoTest,
+					stream.GoTestStackTrace,
+				).Process,
+				func(err error) {
+					unsafe.DoSilent(io.Copy(ioutil.Discard, input))
+				},
+			)
 
 			if err := task.Run(); err != nil {
 				cmd.SilenceErrors = true

@@ -3,9 +3,14 @@ package stream
 import (
 	"bufio"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"strings"
 
 	"github.com/fatih/color"
+	"go.octolab.org/async"
+	"go.octolab.org/safe"
+	"go.octolab.org/unsafe"
 )
 
 type Processor interface {
@@ -16,6 +21,37 @@ type Process func() error
 
 func (fn Process) Process() error {
 	return fn()
+}
+
+func Pipe(input Reader, output Writer, processors ...func(Reader, Writer) Processor) Processor {
+	if len(processors) == 1 {
+		return processors[0](input, output)
+	}
+	return Process(func() error {
+		job := new(async.Job)
+		defer job.Wait()
+
+		for _, build := range processors {
+			in, out := io.Pipe()
+			processor := build(input, out)
+			job.Do(func() error {
+				defer safe.Close(out, unsafe.Ignore)
+				return processor.Process()
+			}, func(err error) {
+				unsafe.DoSilent(io.Copy(ioutil.Discard, in))
+			})
+			input = in
+		}
+
+		job.Do(func() error {
+			_, err := io.Copy(output, input)
+			return err
+		}, func(err error) {
+			unsafe.DoSilent(io.Copy(ioutil.Discard, input))
+		})
+
+		return nil
+	})
 }
 
 func GoTest(input Reader, output Writer) Processor {
