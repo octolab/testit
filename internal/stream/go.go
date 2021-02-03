@@ -23,10 +23,20 @@ func (fn Process) Process() error {
 	return fn()
 }
 
-func Pipe(input Reader, output Writer, processors ...func(Reader, Writer) Processor) Processor {
-	if len(processors) == 1 {
-		return processors[0](input, output)
+func Copy(input Reader, output Writer) Processor {
+	return Process(func() error {
+		_, err := io.Copy(output, input)
+		return err
+	})
+}
+
+func Discard(input Reader) func(error) {
+	return func(err error) {
+		unsafe.DoSilent(io.Copy(ioutil.Discard, input))
 	}
+}
+
+func Pipe(input Reader, output Writer, processors ...func(Reader, Writer) Processor) Processor {
 	return Process(func() error {
 		job := new(async.Job)
 		defer job.Wait()
@@ -37,18 +47,11 @@ func Pipe(input Reader, output Writer, processors ...func(Reader, Writer) Proces
 			job.Do(func() error {
 				defer safe.Close(out, unsafe.Ignore)
 				return processor.Process()
-			}, func(err error) {
-				unsafe.DoSilent(io.Copy(ioutil.Discard, in))
-			})
+			}, Discard(in))
 			input = in
 		}
 
-		job.Do(func() error {
-			_, err := io.Copy(output, input)
-			return err
-		}, func(err error) {
-			unsafe.DoSilent(io.Copy(ioutil.Discard, input))
-		})
+		job.Do(Copy(input, output).Process, Discard(input))
 
 		return nil
 	})
