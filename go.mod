@@ -11,6 +11,6 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.7.0
 	go.octolab.org v0.7.2
-	go.octolab.org/toolkit/cli v0.5.0
+	go.octolab.org/toolkit/cli v0.5.1
 	go.octolab.org/toolkit/config v0.0.4
 )

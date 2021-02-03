@@ -51,9 +51,9 @@ func main() {
 func shutdown(err error) {
 	code := 1
 	if silent, is := errors.Unwrap(err).(cli.Silent); is {
-		code = silent.Code
-		if silent.Message != "" {
-			unsafe.DoSilent(fmt.Fprintln(stderr, silent.Message))
+		code = silent.Code()
+		if message, has := silent.Message(); has {
+			unsafe.DoSilent(fmt.Fprintln(stderr, message))
 		}
 	} else if recovered, is := errors.Unwrap(err).(errors.Recovered); is {
 		unsafe.DoSilent(fmt.Fprintf(stderr, "recovered: %+v\n", recovered.Cause()))

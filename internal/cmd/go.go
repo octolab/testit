@@ -77,7 +77,7 @@ func Golang() *cobra.Command {
 
 			if err := task.Run(); err != nil {
 				cmd.SilenceErrors = true
-				return cli.Silent{Code: task.ProcessState.ExitCode()} // TODO:cli wrap error
+				return cli.NewSilent(err, task.ProcessState.ExitCode())
 			}
 			return nil
 		},
@@ -122,7 +122,7 @@ func Golang() *cobra.Command {
 
 			if err := task.Run(); err != nil {
 				cmd.SilenceErrors = true
-				return cli.Silent{Code: task.ProcessState.ExitCode()} // TODO:cli wrap error
+				return cli.NewSilent(err, task.ProcessState.ExitCode())
 			}
 			return nil
 		},
