@@ -7,6 +7,7 @@ import (
 	"os/signal"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 	"go.octolab.org/async"
 	"go.octolab.org/safe"
 	cli "go.octolab.org/toolkit/cli/errors"
@@ -38,6 +39,21 @@ func Golang() *cobra.Command {
 			input, output := io.Pipe()
 			defer safe.Close(output, unsafe.Ignore)
 
+			valves := make([]stream.Valve, 0, 2)
+			{
+				set := pflag.NewFlagSet(cmd.Root().Use, pflag.ContinueOnError)
+				colored := set.Bool("colored", false, "")
+				stacked := set.Bool("stacked", false, "")
+				unsafe.Ignore(set.Parse(args))
+				args = exclude(args, "--colored", "--stacked")
+				if *colored {
+					valves = append(valves, stream.GoTest)
+				}
+				if *stacked {
+					valves = append(valves, stream.GoTestStackTrace)
+				}
+			}
+
 			task, err := process.GoTest(
 				ctx,
 				process.WithArgs(args),
@@ -54,10 +70,7 @@ func Golang() *cobra.Command {
 			job.Do(
 				stream.
 					Connect(input, cmd.OutOrStdout()).
-					Pipe(
-						stream.GoTest,
-						stream.GoTestStackTrace,
-					).
+					Pipe(valves...).
 					Operate,
 				stream.Discard(input),
 			)
@@ -118,4 +131,21 @@ func Golang() *cobra.Command {
 	main.AddCommand(&compile)
 
 	return &main
+}
+
+func exclude(input []string, by ...string) []string {
+	filtered := input[:0]
+	for _, str := range input {
+		found := false
+		for _, cmp := range by {
+			if str == cmp {
+				found = true
+				break
+			}
+		}
+		if !found {
+			filtered = append(filtered, str)
+		}
+	}
+	return filtered
 }
