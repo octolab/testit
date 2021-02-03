@@ -23,8 +23,8 @@ import (
 	"github.com/mgutz/ansi"
 )
 
-func GoTestStackTrace(input Reader, output Writer) Processor {
-	return Process(func() error {
+func GoTestStackTrace(input Reader, output Writer) Operator {
+	return OperatorFunc(func() error {
 		var (
 			rebase = true
 			parse  = true

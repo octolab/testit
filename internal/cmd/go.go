@@ -31,7 +31,7 @@ func Golang() *cobra.Command {
 			ctx, cancel := context.WithCancel(cmd.Context())
 			defer cancel()
 
-			signals := make(chan os.Signal)
+			signals := make(chan os.Signal, 256)
 			signal.Notify(signals)
 			defer signal.Stop(signals)
 
@@ -52,10 +52,13 @@ func Golang() *cobra.Command {
 			}
 
 			job.Do(
-				stream.Pipe(input, cmd.OutOrStdout(),
-					stream.GoTest,
-					stream.GoTestStackTrace,
-				).Process,
+				stream.
+					Connect(input, cmd.OutOrStdout()).
+					Pipe(
+						stream.GoTest,
+						stream.GoTestStackTrace,
+					).
+					Operate,
 				stream.Discard(input),
 			)
 
@@ -82,7 +85,7 @@ func Golang() *cobra.Command {
 			ctx, cancel := context.WithCancel(cmd.Context())
 			defer cancel()
 
-			signals := make(chan os.Signal)
+			signals := make(chan os.Signal, 256)
 			signal.Notify(signals)
 			defer signal.Stop(signals)
 
@@ -102,7 +105,7 @@ func Golang() *cobra.Command {
 				return err
 			}
 
-			job.Do(stream.GoTestCompile(input, cmd.OutOrStdout()).Process, unsafe.Ignore)
+			job.Do(stream.GoTestCompile(input, cmd.OutOrStdout()).Operate, unsafe.Ignore)
 
 			if err := task.Run(); err != nil {
 				cmd.SilenceErrors = true

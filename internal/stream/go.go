@@ -3,68 +3,19 @@ package stream
 import (
 	"bufio"
 	"fmt"
-	"io"
-	"io/ioutil"
 	"strings"
 
 	"github.com/fatih/color"
-	"go.octolab.org/async"
-	"go.octolab.org/safe"
-	"go.octolab.org/unsafe"
 )
 
-type Processor interface {
-	Process() error
-}
-
-type Process func() error
-
-func (fn Process) Process() error {
-	return fn()
-}
-
-func Copy(input Reader, output Writer) Processor {
-	return Process(func() error {
-		_, err := io.Copy(output, input)
-		return err
-	})
-}
-
-func Discard(input Reader) func(error) {
-	return func(err error) {
-		unsafe.DoSilent(io.Copy(ioutil.Discard, input))
-	}
-}
-
-func Pipe(input Reader, output Writer, processors ...func(Reader, Writer) Processor) Processor {
-	return Process(func() error {
-		job := new(async.Job)
-		defer job.Wait()
-
-		for _, build := range processors {
-			in, out := io.Pipe()
-			processor := build(input, out)
-			job.Do(func() error {
-				defer safe.Close(out, unsafe.Ignore)
-				return processor.Process()
-			}, Discard(in))
-			input = in
-		}
-
-		job.Do(Copy(input, output).Process, Discard(input))
-
-		return nil
-	})
-}
-
-func GoTest(input Reader, output Writer) Processor {
+func GoTest(input Reader, output Writer) Operator {
 	const (
 		fail = color.FgHiRed
 		pass = color.FgGreen
 		skip = color.FgYellow
 	)
 
-	return Process(func() error {
+	return OperatorFunc(func() error {
 		scanner := bufio.NewScanner(input)
 		scanner.Split(bufio.ScanLines)
 		for scanner.Scan() {
@@ -105,8 +56,8 @@ func GoTest(input Reader, output Writer) Processor {
 	})
 }
 
-func GoTestCompile(input Reader, output Writer) Processor {
-	return Process(func() error {
+func GoTestCompile(input Reader, output Writer) Operator {
+	return OperatorFunc(func() error {
 		scanner := bufio.NewScanner(input)
 		scanner.Split(bufio.ScanLines)
 		for scanner.Scan() {

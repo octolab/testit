@@ -45,5 +45,5 @@ func TestGoTestStackTrace(t *testing.T) {
 		assert.Equal(t, string(expected), output.String())
 	}()
 
-	require.NoError(t, GoTestStackTrace(input, output).Process())
+	require.NoError(t, GoTestStackTrace(input, output).Operate())
 }
