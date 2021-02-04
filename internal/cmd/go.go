@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/pflag"
 	"go.octolab.org/async"
 	"go.octolab.org/safe"
-	cli "go.octolab.org/toolkit/cli/errors"
+	cli "go.octolab.org/toolkit/cli/cobra"
 	"go.octolab.org/unsafe"
 
 	"go.octolab.org/toolset/testit/internal/process"
@@ -75,11 +75,7 @@ func Golang() *cobra.Command {
 				stream.Discard(input),
 			)
 
-			if err := task.Run(); err != nil {
-				cmd.SilenceErrors = true
-				return cli.NewSilent(err, task.ProcessState.ExitCode())
-			}
-			return nil
+			return cli.SilentError(cmd, task.Run(), task.ProcessState.ExitCode())
 		},
 	}
 
@@ -120,11 +116,7 @@ func Golang() *cobra.Command {
 
 			job.Do(stream.GoTestCompile(input, cmd.OutOrStdout()).Operate, unsafe.Ignore)
 
-			if err := task.Run(); err != nil {
-				cmd.SilenceErrors = true
-				return cli.NewSilent(err, task.ProcessState.ExitCode())
-			}
-			return nil
+			return cli.SilentError(cmd, task.Run(), task.ProcessState.ExitCode())
 		},
 	}
 
