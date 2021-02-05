@@ -6,12 +6,12 @@ ok  	testdata/notests	0.643s
 panic: division by zero [recovered]
 	panic: division by zero
 
-1: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1168][39m[m
-    [0;1;39mtesting  [39m[m/usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1072                             [0;1;32mtRunner.func1.1[39m[m(*T(#1), func(#2))[39m[m
-    [0;1;39mtesting  [39m[m/usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1075                             [0;32mtRunner.func1[39m[m(*T(#3))[39m[m
-    [0;1;39m         [39m[m/usr/local/Cellar/go/1.15.6/libexec/src/runtime/panic.go:969                                [0;32mpanic[39m[m(interface{}(#1))[39m[m
-    [0;1;39mpanicked [39m[m/Users/ksamigullin/Development/public/testit/internal/testdata/panicked/panicked.go:19      [0;1;31mTheBad.Divide[39m[m(...)[39m[m
-    [0;1;39mpanicked [39m[m/Users/ksamigullin/Development/public/testit/internal/testdata/panicked/panicked_test.go:13 [0;1;31mTestTheBad_Divide[39m[m(*T(#3))[39m[m
-    [0;1;39mtesting  [39m[m/usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1123                             [0;32mtRunner[39m[m(*T(#3), func(0x114df50))[39m[m
+1: running [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1168]
+    testing  /usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1072                             tRunner.func1.1(*T(#1), func(#2))
+    testing  /usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1075                             tRunner.func1(*T(#3))
+             /usr/local/Cellar/go/1.15.6/libexec/src/runtime/panic.go:969                                panic(interface{}(#1))
+    panicked /Users/ksamigullin/Development/public/testit/internal/testdata/panicked/panicked.go:19      TheBad.Divide(...)
+    panicked /Users/ksamigullin/Development/public/testit/internal/testdata/panicked/panicked_test.go:13 TestTheBad_Divide(*T(#3))
+    testing  /usr/local/Cellar/go/1.15.6/libexec/src/testing/testing.go:1123                             tRunner(*T(#3), func(0x114df50))
 FAIL	testdata/panicked	0.443s
 FAIL

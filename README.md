@@ -1,6 +1,6 @@
 > # 👨‍🍳 testit
 >
-> Extended testing toolset.
+> Extended testing toolset, taste it.
 
 [![Build][build.icon]][build.page]
 [![Documentation][docs.icon]][docs.page]
@@ -14,8 +14,8 @@
 ```bash
 $ testit go compile ./...
 # -> go test -run ^Fake$$ ./... | { grep -v 'no test files' | grep -v 'no tests to run' || true }
-$ testit go --colored --panicparse [testflag]
-# -> gotest [testflag] | panicparse // with color preserve
+$ testit go --abspath --colored --stacked [testflag]
+# -> gotest [testflag] |& panicparse | sed // with color preserve and relative → absolute replacement
 ```
 
 A full description of the idea is available [here][design.page].

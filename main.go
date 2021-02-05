@@ -7,7 +7,6 @@ import (
 	"os"
 	"runtime/debug"
 
-	"go.octolab.org/safe"
 	"go.octolab.org/toolkit/cli/cobra"
 	"go.octolab.org/toolkit/cli/graceful"
 
@@ -43,5 +42,5 @@ func main() {
 		cobra.NewVersionCommand(version, date, commit, cnf.Features...),
 	)
 
-	safe.Do(func() error { return root.ExecuteContext(ctx) }, graceful.Shutdown(stderr, exit))
+	graceful.ExitAfterContext(ctx, root.ExecuteContext, stderr, exit)
 }

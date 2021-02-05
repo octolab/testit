@@ -23,23 +23,12 @@ import (
 	"github.com/mgutz/ansi"
 )
 
-func GoTestStackTrace(input Reader, output Writer) Operator {
-	return OperatorFunc(func() error {
-		var (
-			rebase = true
-			parse  = true
-		)
+func GoTestStackTrace(colored bool) Valve {
+	const resetFG = ansi.DefaultFG + "\033[m"
 
-		opts := stack.DefaultOpts()
-		if !rebase {
-			opts.GuessPaths = false
-			opts.AnalyzeSources = false
-		}
-		if !parse {
-			opts.AnalyzeSources = false
-		}
-		const resetFG = ansi.DefaultFG + "\033[m"
-		p := &Palette{
+	var pallete Palette
+	if colored {
+		pallete = Palette{
 			EOLReset:                    resetFG,
 			RoutineFirst:                ansi.ColorCode("magenta+b"),
 			CreatedBy:                   ansi.LightBlack,
@@ -59,34 +48,53 @@ func GoTestStackTrace(input Reader, output Writer) Operator {
 			FuncStdLibExported:          ansi.ColorCode("green+b"),
 			Arguments:                   resetFG,
 		}
-		s := stack.AnyPointer
-		pf := fullPath
+	}
 
-		for first := true; ; first = false {
-			c, suffix, err := stack.ScanSnapshot(input, output, opts)
-			if c != nil {
-				// Process it even if an error occurred.
-				if err1 := processInner(output, p, s, pf, c, first); err == nil {
-					err = err1
+	return func(input Reader, output Writer) Operator {
+		return OperatorFunc(func() error {
+			var (
+				rebase = true
+				parse  = true
+			)
+
+			opts := stack.DefaultOpts()
+			if !rebase {
+				opts.GuessPaths = false
+				opts.AnalyzeSources = false
+			}
+			if !parse {
+				opts.AnalyzeSources = false
+			}
+			p := &pallete
+			s := stack.AnyPointer
+			pf := fullPath
+
+			for first := true; ; first = false {
+				c, suffix, err := stack.ScanSnapshot(input, output, opts)
+				if c != nil {
+					// Process it even if an error occurred.
+					if err1 := processInner(output, p, s, pf, c, first); err == nil {
+						err = err1
+					}
 				}
-			}
-			if err == nil {
-				// This means the whole buffer was not read, loop again.
-				input = io.MultiReader(bytes.NewReader(suffix), input)
-				continue
-			}
-			if len(suffix) != 0 {
-				if _, err1 := output.Write(suffix); err == nil {
-					err = err1
+				if err == nil {
+					// This means the whole buffer was not read, loop again.
+					input = io.MultiReader(bytes.NewReader(suffix), input)
+					continue
 				}
+				if len(suffix) != 0 {
+					if _, err1 := output.Write(suffix); err == nil {
+						err = err1
+					}
+				}
+				if err == io.EOF {
+					return nil
+				}
+				// Parts of the input will be lost.
+				return err
 			}
-			if err == io.EOF {
-				return nil
-			}
-			// Parts of the input will be lost.
-			return err
-		}
-	})
+		})
+	}
 }
 
 func processInner(

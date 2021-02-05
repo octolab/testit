@@ -22,8 +22,6 @@ func TestMain(m *testing.M) {
 }
 
 func TestGoTestStackTrace(t *testing.T) {
-	t.SkipNow()
-
 	input, err := os.Open("testdata/panic/stdout.txt")
 	require.NoError(t, err)
 	defer safe.Close(input, func(err error) { require.NoError(t, err) })
@@ -45,5 +43,5 @@ func TestGoTestStackTrace(t *testing.T) {
 		assert.Equal(t, string(expected), output.String())
 	}()
 
-	require.NoError(t, GoTestStackTrace(input, output).Operate())
+	require.NoError(t, GoTestStackTrace(false)(input, output).Operate())
 }
