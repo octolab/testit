@@ -7,6 +7,7 @@ import (
 	"os"
 	"runtime/debug"
 
+	"go.octolab.org/fn"
 	"go.octolab.org/toolkit/cli/cobra"
 	"go.octolab.org/toolkit/cli/graceful"
 
@@ -42,5 +43,5 @@ func main() {
 		cobra.NewVersionCommand(version, date, commit, cnf.Features...),
 	)
 
-	graceful.ExitAfterContext(ctx, root.ExecuteContext, stderr, exit)
+	graceful.ExitAfter(fn.HoldContext(ctx, root.ExecuteContext), stderr, exit)
 }

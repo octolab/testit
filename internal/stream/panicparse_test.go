@@ -5,6 +5,8 @@ import (
 	"flag"
 	"io/ioutil"
 	"os"
+	"runtime"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -32,15 +34,17 @@ func TestGoTestStackTrace(t *testing.T) {
 		require.NoError(t, err)
 		defer safe.Close(golden, func(err error) { require.NoError(t, err) })
 
+		obtained := strings.ReplaceAll(output.String(), runtime.GOROOT(), "$go")
 		if *update {
-			_, err = golden.Write(output.Bytes())
+			require.NoError(t, golden.Truncate(0))
+			_, err = golden.WriteString(obtained)
 			require.NoError(t, err)
 			return
 		}
 
 		expected, err := ioutil.ReadAll(golden)
 		require.NoError(t, err)
-		assert.Equal(t, string(expected), output.String())
+		assert.Equal(t, string(expected), obtained)
 	}()
 
 	require.NoError(t, GoTestStackTrace(false)(input, output).Operate())
