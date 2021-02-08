@@ -23,7 +23,7 @@ import (
 	"github.com/mgutz/ansi"
 )
 
-func GoTestStackTrace(colored bool) Valve {
+func GoTestStackTrace(opts *stack.Opts, colored bool) Valve {
 	const resetFG = ansi.DefaultFG + "\033[m"
 
 	var pallete Palette
@@ -57,7 +57,6 @@ func GoTestStackTrace(colored bool) Valve {
 				parse  = true
 			)
 
-			opts := stack.DefaultOpts()
 			if !rebase {
 				opts.GuessPaths = false
 				opts.AnalyzeSources = false

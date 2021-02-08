@@ -5,10 +5,9 @@ import (
 	"flag"
 	"io/ioutil"
 	"os"
-	"runtime"
-	"strings"
 	"testing"
 
+	"github.com/maruel/panicparse/v2/stack"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.octolab.org/safe"
@@ -34,7 +33,7 @@ func TestGoTestStackTrace(t *testing.T) {
 		require.NoError(t, err)
 		defer safe.Close(golden, func(err error) { require.NoError(t, err) })
 
-		obtained := strings.ReplaceAll(output.String(), runtime.GOROOT(), "$go")
+		obtained := output.String()
 		if *update {
 			require.NoError(t, golden.Truncate(0))
 			_, err = golden.WriteString(obtained)
@@ -47,5 +46,8 @@ func TestGoTestStackTrace(t *testing.T) {
 		assert.Equal(t, string(expected), obtained)
 	}()
 
-	require.NoError(t, GoTestStackTrace(false)(input, output).Operate())
+	opts := stack.DefaultOpts()
+	opts.LocalGOROOT = "$go"
+
+	require.NoError(t, GoTestStackTrace(opts, false)(input, output).Operate())
 }

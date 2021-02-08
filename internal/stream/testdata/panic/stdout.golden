@@ -6,12 +6,12 @@ ok  	testdata/notests	0.643s
 panic: division by zero [recovered]
 	panic: division by zero
 
-1: running [Created by testing.(*T).Run @ $go/src/testing/testing.go:1168]
-    testing  $go/src/testing/testing.go:1072 tRunner.func1.1(*T(#1), func(#2))
-    testing  $go/src/testing/testing.go:1075 tRunner.func1(*T(#3))
-             $go/src/runtime/panic.go:969    panic(interface{}(#1))
-    panicked $testit/internal/testdata/panicked/panicked.go:19               TheBad.Divide(...)
-    panicked $testit/internal/testdata/panicked/panicked_test.go:13          TestTheBad_Divide(#3)
-    testing  $go/src/testing/testing.go:1123 tRunner(*T(#3), func(0x114df50))
+1: running [Created by testing.(*T).Run @ $go/libexec/src/testing/testing.go:1168]
+    testing  $go/libexec/src/testing/testing.go:1072                tRunner.func1.1(#1, #2)
+    testing  $go/libexec/src/testing/testing.go:1075                tRunner.func1(#3)
+             $go/libexec/src/runtime/panic.go:969                   panic(#1, #2)
+    panicked $testit/internal/testdata/panicked/panicked.go:19      TheBad.Divide(...)
+    panicked $testit/internal/testdata/panicked/panicked_test.go:13 TestTheBad_Divide(#3)
+    testing  $go/libexec/src/testing/testing.go:1123                tRunner(#3, 0x114df50)
 FAIL	testdata/panicked	0.443s
 FAIL

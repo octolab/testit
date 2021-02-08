@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 
+	"github.com/maruel/panicparse/v2/stack"
 	"github.com/spf13/cobra"
 	"go.octolab.org/async"
 	"go.octolab.org/safe"
@@ -73,7 +74,7 @@ func Golang() *cobra.Command {
 				valves = append(valves, stream.GoTest)
 			}
 			if stacked {
-				valves = append(valves, stream.GoTestStackTrace(colored))
+				valves = append(valves, stream.GoTestStackTrace(stack.DefaultOpts(), colored))
 			}
 		}
 
