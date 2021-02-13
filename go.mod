@@ -7,7 +7,7 @@ require (
 	github.com/golang/mock v1.4.4
 	github.com/maruel/panicparse/v2 v2.1.1
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
-	github.com/spf13/cobra v1.1.2
+	github.com/spf13/cobra v1.1.3
 	github.com/stretchr/testify v1.7.0
 	go.octolab.org v0.9.0
 	go.octolab.org/toolkit/cli v0.6.2

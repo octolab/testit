@@ -4,19 +4,17 @@
 GIT_HOOKS     = post-merge pre-commit pre-push
 GO_VERSIONS   = 1.15
 GO111MODULE   = on
-SHELL         = /bin/bash -euo pipefail
 
 AT    := @
 ARCH  := $(shell uname -m | tr '[:upper:]' '[:lower:]')
 OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 DATE  := $(shell date +%Y-%m-%dT%T%Z)
+SHELL := /usr/bin/env bash -euo pipefail -c
 
-SHELL ?= /bin/bash -euo pipefail
-
-verbose:
+make-verbose:
 	$(eval AT :=)
 	@echo > /dev/null
-.PHONY: verbose
+.PHONY: make-verbose
 
 todo:
 	@grep \
@@ -63,13 +61,12 @@ git-check:
 	$(AT) ! git ls-files --others --exclude-standard | grep -q ^
 .PHONY: git-check
 
-export GOBIN := $(PWD)/bin/$(OS)/$(ARCH)
-export PATH  := $(GOBIN):$(PATH)
-
+GOBIN       ?= $(PWD)/bin/$(OS)/$(ARCH)
 GOFLAGS     ?= -mod=
 GOPRIVATE   ?= go.octolab.net
 GOPROXY     ?= direct
 GOTEST      ?= $(GOBIN)/testit
+GOTESTFLAGS ?=
 GOTRACEBACK ?= all
 LOCAL       ?= $(MODULE)
 MODULE      ?= `go list -m $(GOFLAGS)`
@@ -83,7 +80,7 @@ endif
 ifeq (, $(GOTEST))
 	GOTEST = go test
 else
-	GOTEST := $(GOTEST) --colored
+	GOTEST := $(GOTEST) go --colored
 endif
 
 ifeq (, $(PACKAGES))
@@ -94,6 +91,7 @@ ifeq (, $(PATHS))
 	PATHS = .
 endif
 
+export GOBIN       := $(GOBIN)
 export GOFLAGS     := $(GOFLAGS)
 export GOPRIVATE   := $(GOPRIVATE)
 export GOPROXY     := $(GOPROXY)
@@ -101,10 +99,12 @@ export GOTRACEBACK := $(GOTRACEBACK)
 
 go-env:
 	@echo "GO111MODULE: $(strip `go env GO111MODULE`)"
+	@echo "GOBIN:       $(strip `go env GOBIN`)"
 	@echo "GOFLAGS:     $(strip `go env GOFLAGS`)"
 	@echo "GOPRIVATE:   $(strip `go env GOPRIVATE`)"
 	@echo "GOPROXY:     $(strip `go env GOPROXY`)"
 	@echo "GOTEST:      $(GOTEST)"
+	@echo "GOTESTFLAGS: $(GOTESTFLAGS)"
 	@echo "GOTRACEBACK: $(GOTRACEBACK)"
 	@echo "LOCAL:       $(LOCAL)"
 	@echo "MODULE:      $(MODULE)"
@@ -112,6 +112,11 @@ go-env:
 	@echo "PATHS:       $(strip $(PATHS))"
 	@echo "TIMEOUT:     $(TIMEOUT)"
 .PHONY: go-env
+
+go-verbose:
+	$(eval GOTESTFLAGS := -v)
+	@echo > /dev/null
+.PHONY: go-verbose
 
 deps-check:
 	@go mod verify
@@ -138,16 +143,15 @@ deps-tidy:
 deps-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
 deps-update:
 	$(AT) if command -v egg > /dev/null; then \
-		packages="`egg deps list | tr ' ' '\n' | sed -e 's/$$/@latest/'`"; \
+		packages="`egg deps list | tr ' ' '\n' | sed -e 's|$$|/...@latest|'`"; \
 	else \
-		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's/$$/@latest/'`"; \
+		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's|$$|/...@latest|'`"; \
 	fi; \
-	if [[ "$$packages" = "@latest" ]]; then exit; fi; \
-	for package in $$packages; do \
-		go mod edit -require $$package; \
-		go mod download; \
-	done
-	$(AT) $(MAKE) deps-tidy
+	if [[ "$$packages" = "/...@latest" ]]; then exit; fi; \
+	for package in $$packages; do go get $$package; done
+
+	$(AT) if [ -z "$(AT)" ]; then MAKE="$(MAKE) verbose"; else MAKE="$(MAKE)"; fi; \
+	$$MAKE deps-tidy
 .PHONY: deps-update
 
 GODOC_HOST ?= localhost:6060
@@ -179,22 +183,16 @@ lint:
 .PHONY: lint
 
 test:
-	@$(GOTEST) -race -timeout $(TIMEOUT) $(PACKAGES)
+	@$(GOTEST) -race -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
 .PHONY: test
 
 test-clean:
 	@go clean -testcache
 .PHONY: test-clean
 
-test-quick: GOTAGS = integration,tools
 test-quick:
-	@go test -run ^Fake$$ -tags $(GOTAGS) ./... | { grep -v 'no tests to run' || true; }
-	@$(GOTEST) -timeout $(TIMEOUT) $(PACKAGES)
+	@$(GOTEST) -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
 .PHONY: test-quick
-
-test-verbose:
-	@$(GOTEST) -race -timeout $(TIMEOUT) -v $(PACKAGES)
-.PHONY: test-verbose
 
 test-with-coverage:
 	@$(GOTEST) \
@@ -203,6 +201,7 @@ test-with-coverage:
 		-coverprofile c.out \
 		-race \
 		-timeout $(TIMEOUT) \
+		$(GOTESTFLAGS) \
 		$(PACKAGES)
 .PHONY: test-with-coverage
 
@@ -218,12 +217,13 @@ test-integration:
 		-coverprofile integration.out \
 		-race \
 		-tags $(GOTAGS) \
+		$(GOTESTFLAGS) \
 		./...
 .PHONY: test-integration
 
 test-integration-quick: GOTAGS = integration
 test-integration-quick:
-	@$(GOTEST) -tags $(GOTAGS) ./...
+	@$(GOTEST) -tags $(GOTAGS) $(GOTESTFLAGS) ./...
 .PHONY: test-integration-quick
 
 test-integration-report: test-integration
@@ -304,15 +304,13 @@ tools-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
 tools-update:
 	$(AT) cd tools; \
 	if command -v egg > /dev/null; then \
-		packages="`egg deps list | tr ' ' '\n' | sed -e 's/$$/@latest/'`"; \
+		packages="`egg deps list | tr ' ' '\n' | sed -e 's|$$|/...@latest|'`"; \
 	else \
-		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's/$$/@latest/'`"; \
+		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's|$$|/...@latest|'`"; \
 	fi; \
-	if [[ "$$packages" = "@latest" ]]; then exit; fi; \
-	for package in $$packages; do \
-		go mod edit -require $$package; \
-		go mod download; \
-	done
+	if [[ "$$packages" = "/...@latest" ]]; then exit; fi; \
+	for package in $$packages; do go get $$package; done
+
 	$(AT) if [ -z "$(AT)" ]; then MAKE="$(MAKE) verbose"; else MAKE="$(MAKE)"; fi; \
 	$$MAKE tools-tidy tools-install
 .PHONY: tools-update
@@ -334,6 +332,8 @@ $(foreach version,$(GO_VERSIONS),$(render_go_tpl))
 
 endif
 
+
+export PATH := $(GOBIN):$(PATH)
 
 init: deps test lint hooks
 	@git config core.autocrlf input
@@ -361,6 +361,9 @@ refresh: deps-tidy update deps generate test build
 
 update: deps-update tools-update
 .PHONY: update
+
+verbose: make-verbose go-verbose
+.PHONY: verbose
 
 verify: deps-check generate test lint git-check
 .PHONY: verify

@@ -1,6 +1,9 @@
-package panicked
+package panicked_test
 
-import "testing"
+import (
+	. "testdata/panicked"
+	"testing"
+)
 
 func TestTheGood_Divide(t *testing.T) {
 	_, err := TheGood{}.Divide(5, 0)

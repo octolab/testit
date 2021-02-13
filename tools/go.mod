@@ -8,7 +8,7 @@ require (
 	github.com/kyoh86/looppointer v0.1.7
 	github.com/maruel/panicparse/v2 v2.1.1
 	github.com/rakyll/gotest v0.0.5
-	golang.org/x/exp v0.0.0-20210201131500-d352d2db2ceb
+	golang.org/x/exp v0.0.0-20210212053707-62dc52270d37
 	golang.org/x/tools v0.1.0
 )
 
