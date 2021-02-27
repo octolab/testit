@@ -21,9 +21,11 @@ import (
 
 func Golang() *cobra.Command {
 	var (
-		abspath bool
-		colored bool
-		stacked bool
+		abspath   bool
+		colored   bool
+		stacked   bool
+		traceback string
+		supported = []string{"none", "single", "all", "system", "crash"}
 	)
 
 	test := cobra.Command{
@@ -39,6 +41,7 @@ func Golang() *cobra.Command {
 	set.BoolVar(&abspath, "abspath", false, "replace relative paths by absolute")
 	set.BoolVar(&colored, "colored", false, "enable colors")
 	set.BoolVar(&stacked, "stacked", false, "enable panic and data race parsing")
+	set.StringVar(&traceback, "traceback", "single", "set GOTRACEBACK env variable [none, single, all, system, crash].")
 
 	test.PreRunE = func(cmd *cobra.Command, args []string) error {
 		if strings.PresentAny(args, "-h", "--help") {
