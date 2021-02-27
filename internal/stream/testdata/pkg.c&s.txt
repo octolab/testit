@@ -1,0 +1,278 @@
+?   	go.octolab.org	[no test files]
+ok  	go.octolab.org/async	(cached)
+ok  	go.octolab.org/context	(cached)
+ok  	go.octolab.org/encoding	(cached) [no tests to run]
+ok  	go.octolab.org/env	(cached)
+ok  	go.octolab.org/errors	(cached)
+ok  	go.octolab.org/fn	(cached)
+ok  	go.octolab.org/fn/timer	(cached)
+ok  	go.octolab.org/io	(cached)
+ok  	go.octolab.org/pointer	(cached)
+ok  	go.octolab.org/runtime	(cached)
+ok  	go.octolab.org/safe	(cached)
+ok  	go.octolab.org/sequence	(cached)
+ok  	go.octolab.org/sequence/generator	(cached)
+ok  	go.octolab.org/strings	(cached)
+ok  	go.octolab.org/strings/bytes	(cached)
+ok  	go.octolab.org/strings/numd	(cached)
+ok  	go.octolab.org/sync	(cached)
+[0;1;35m16: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa00[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:239                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+12: finished[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa00[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:239                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+[0;1;35m16: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+20: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+[0;1;35m14: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+20: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+[0;1;35m15: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa00[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:239                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+20: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa00[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:239                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+[0;1;35m17: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+20: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+[0;1;35m13: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+20: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+[0;1;35m18: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+20: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+[0;1;35m21: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+20: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+[0;1;35m19: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race read @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+20: running[0;90m [Created by testing.(*T).Run @ /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168][39m[m[0;91m Race write @ 0xc0001caa08[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244                      [0;1;32m(*rngSource).Uint64[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234                      [0;1;32m(*rngSource).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85                      [0;1;32m(*Rand).Int63[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99                      [0;1;32m(*Rand).Int31[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134                     [0;1;32m(*Rand).Int31n[39m[m()[39m[m
+    [0;1;39mrand         [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172                     [0;1;32m(*Rand).Intn[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 [0;34mrandIntRange[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15   [0;34mnumber[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44      [0;34mappVersion[39m[m()[39m[m
+    [0;1;39mv6           [39m[m/Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40      [0;1;34m(*Faker).AppVersion[39m[m()[39m[m
+    [0;1;39mtesting_test [39m[m/Users/ksamigullin/Development/public/pkg/testing/env_test.go:78                    [0;1;31mTestSetEnvs.func4.1[39m[m()[39m[m
+    [0;1;39mtesting      [39m[m/usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123                   [0;32mtRunner[39m[m()[39m[m
+--- FAIL: TestSetEnvs (0.03s)
+    --- FAIL: TestSetEnvs/parallel_run (0.00s)
+        --- FAIL: TestSetEnvs/parallel_run/8 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/4 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/2 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/3 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/5 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/1 (0.01s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/6 (0.01s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/9 (0.02s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/7 (0.03s)
+            testing.go:1038: race detected during execution of test
+    testing.go:1038: race detected during execution of test
+FAIL
+FAIL	go.octolab.org/testing	0.165s
+?   	go.octolab.org/time	[no test files]
+ok  	go.octolab.org/unsafe	(cached)
+FAIL

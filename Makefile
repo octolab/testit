@@ -13,11 +13,12 @@ SHELL := /usr/bin/env bash -euo pipefail -c
 
 make-verbose:
 	$(eval AT :=)
+	$(eval MAKE := $(MAKE) verbose)
 	@echo > /dev/null
 .PHONY: make-verbose
 
 todo:
-	@grep \
+	$(AT) grep \
 		--exclude=Makefile \
 		--exclude-dir={bin,components,node_modules,vendor} \
 		--color \
@@ -41,12 +42,12 @@ hooks: unhook
 .PHONY: hooks
 
 unhook:
-	@ls .git/hooks | grep -v .sample | sed 's|.*|.git/hooks/&|' | xargs rm -f || true
+	$(AT) ls .git/hooks | grep -v .sample | sed 's|.*|.git/hooks/&|' | xargs rm -f || true
 .PHONY: unhook
 
 define hook_tpl
 $(1):
-	@githooks/$(1)
+	$$(AT) githooks/$(1)
 .PHONY: $(1)
 endef
 
@@ -119,25 +120,25 @@ go-verbose:
 .PHONY: go-verbose
 
 deps-check:
-	@go mod verify
-	@if command -v egg > /dev/null; then \
+	$(AT) go mod verify
+	$(AT) if command -v egg > /dev/null; then \
 		egg deps check license; \
 		egg deps check version; \
 	fi
 .PHONY: deps-check
 
 deps-clean:
-	@go clean -modcache
+	$(AT) go clean -modcache
 .PHONY: deps-clean
 
 deps-fetch:
-	@go mod download
-	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+	$(AT) go mod download
+	$(AT) if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 .PHONY: deps-fetch
 
 deps-tidy:
-	@go mod tidy
-	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+	$(AT) go mod tidy
+	$(AT) if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 .PHONY: deps-tidy
 
 deps-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
@@ -148,21 +149,19 @@ deps-update:
 		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's|$$|/...@latest|'`"; \
 	fi; \
 	if [[ "$$packages" = "/...@latest" ]]; then exit; fi; \
-	for package in $$packages; do go get $$package; done
-
-	$(AT) if [ -z "$(AT)" ]; then MAKE="$(MAKE) verbose"; else MAKE="$(MAKE)"; fi; \
-	$$MAKE deps-tidy
+	for package in $$packages; do go get -d $$package; done
+	$(AT) $(MAKE) deps-tidy
 .PHONY: deps-update
 
 GODOC_HOST ?= localhost:6060
 
 go-docs:
-	@(sleep 2 && open http://$(GODOC_HOST)/pkg/$(LOCAL)/) &
-	@godoc -http=$(GODOC_HOST)
+	$(AT) (sleep 2 && open http://$(GODOC_HOST)/pkg/$(LOCAL)/) &
+	$(AT) godoc -http=$(GODOC_HOST)
 .PHONY: go-docs
 
 go-fmt:
-	@if command -v goimports > /dev/null; then \
+	$(AT) if command -v goimports > /dev/null; then \
 		goimports -local $(LOCAL) -ungroup -w $(PATHS); \
 	else \
 		gofmt -s -w $(PATHS); \
@@ -170,32 +169,32 @@ go-fmt:
 .PHONY: go-fmt
 
 go-generate:
-	@go generate $(PACKAGES)
+	$(AT) go generate $(PACKAGES)
 .PHONY: go-generate
 
 go-pkg:
-	@open https://pkg.go.dev/$(MODULE)@$(RELEASE)
+	$(AT) open https://pkg.go.dev/$(MODULE)@$(RELEASE)
 .PHONY: go-pkg
 
 lint:
-	@golangci-lint run ./...
-	@looppointer ./...
+	$(AT) golangci-lint run ./...
+	$(AT) looppointer ./...
 .PHONY: lint
 
 test:
-	@$(GOTEST) -race -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
+	$(AT) $(GOTEST) -race -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
 .PHONY: test
 
 test-clean:
-	@go clean -testcache
+	$(AT) go clean -testcache
 .PHONY: test-clean
 
 test-quick:
-	@$(GOTEST) -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
+	$(AT) $(GOTEST) -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
 .PHONY: test-quick
 
 test-with-coverage:
-	@$(GOTEST) \
+	$(AT) $(GOTEST) \
 		-cover \
 		-covermode atomic \
 		-coverprofile c.out \
@@ -206,12 +205,12 @@ test-with-coverage:
 .PHONY: test-with-coverage
 
 test-with-coverage-report: test-with-coverage
-	@go tool cover -html c.out
+	$(AT) go tool cover -html c.out
 .PHONY: test-with-coverage-report
 
 test-integration: GOTAGS = integration
 test-integration:
-	@$(GOTEST) \
+	$(AT) $(GOTEST) \
 		-cover \
 		-covermode atomic \
 		-coverprofile integration.out \
@@ -223,11 +222,11 @@ test-integration:
 
 test-integration-quick: GOTAGS = integration
 test-integration-quick:
-	@$(GOTEST) -tags $(GOTAGS) $(GOTESTFLAGS) ./...
+	$(AT) $(GOTEST) -tags $(GOTAGS) $(GOTESTFLAGS) ./...
 .PHONY: test-integration-quick
 
 test-integration-report: test-integration
-	@go tool cover -html integration.out
+	$(AT) go tool cover -html integration.out
 .PHONY: test-integration-report
 
 BINARY  ?= $(GOBIN)/$(shell basename $(MAIN))
@@ -244,31 +243,31 @@ build-env:
 .PHONY: build-env
 
 build:
-	@go build -o $(BINARY) $(LDFLAGS) $(MAIN)
+	$(AT) go build -o $(BINARY) $(LDFLAGS) $(MAIN)
 .PHONY: build
 
 build-with-race:
-	@go build -race -o $(BINARY) $(LDFLAGS) $(MAIN)
+	$(AT) go build -race -o $(BINARY) $(LDFLAGS) $(MAIN)
 .PHONY: build-with-race
 
 build-clean:
-	@rm -f $(BINARY)
+	$(AT) rm -f $(BINARY)
 .PHONY: build-clean
 
 install:
-	@go install $(LDFLAGS) $(MAIN)
+	$(AT) go install $(LDFLAGS) $(MAIN)
 .PHONY: install
 
 install-clean:
-	@go clean -cache
+	$(AT) go clean -cache
 .PHONY: install-clean
 
 dist-check:
-	@goreleaser --snapshot --skip-publish --rm-dist
+	$(AT) goreleaser --snapshot --skip-publish --rm-dist
 .PHONY: dist-check
 
 dist-dump:
-	@godownloader .goreleaser.yml > bin/install
+	$(AT) godownloader .goreleaser.yml > bin/install
 .PHONY: dist-dump
 
 TOOLFLAGS ?= -mod=
@@ -309,17 +308,15 @@ tools-update:
 		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's|$$|/...@latest|'`"; \
 	fi; \
 	if [[ "$$packages" = "/...@latest" ]]; then exit; fi; \
-	for package in $$packages; do go get $$package; done
-
-	$(AT) if [ -z "$(AT)" ]; then MAKE="$(MAKE) verbose"; else MAKE="$(MAKE)"; fi; \
-	$$MAKE tools-tidy tools-install
+	for package in $$packages; do go get -d $$package; done
+	$(AT) $(MAKE) tools-tidy tools-install
 .PHONY: tools-update
 
 ifdef GO_VERSIONS
 
 define go_tpl
 go$(1):
-	@docker run \
+	$$(AT) docker run \
 		--rm -it \
 		-v $(PWD):/src \
 		-w /src \
