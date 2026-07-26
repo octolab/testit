@@ -1,0 +1,674 @@
+?   	go.octolab.org	[no test files]
+ok  	go.octolab.org/async	(cached)
+ok  	go.octolab.org/context	(cached)
+ok  	go.octolab.org/encoding	(cached) [no tests to run]
+ok  	go.octolab.org/env	(cached)
+ok  	go.octolab.org/errors	(cached)
+ok  	go.octolab.org/fn	(cached)
+ok  	go.octolab.org/fn/timer	(cached)
+ok  	go.octolab.org/io	(cached)
+ok  	go.octolab.org/pointer	(cached)
+ok  	go.octolab.org/runtime	(cached)
+ok  	go.octolab.org/safe	(cached)
+ok  	go.octolab.org/sequence	(cached)
+ok  	go.octolab.org/sequence/generator	(cached)
+ok  	go.octolab.org/strings	(cached)
+ok  	go.octolab.org/strings/bytes	(cached)
+ok  	go.octolab.org/strings/numd	(cached)
+ok  	go.octolab.org/sync	(cached)
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa00 by goroutine 18:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:239 +0x3e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa00 by goroutine 12:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:239 +0x54
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 18 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 12 (finished) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa08 by goroutine 18:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0x8e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa08 by goroutine 14:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0xaa
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 18 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 14 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa08 by goroutine 15:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0x8e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa08 by goroutine 14:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0xaa
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 15 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 14 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa00 by goroutine 16:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:239 +0x3e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa00 by goroutine 14:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:239 +0x54
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 16 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 14 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa08 by goroutine 13:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0x8e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa08 by goroutine 14:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0xaa
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 13 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 14 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa08 by goroutine 21:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0x8e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa08 by goroutine 14:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0xaa
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 21 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 14 (finished) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa08 by goroutine 17:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0x8e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa08 by goroutine 14:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0xaa
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 17 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 14 (finished) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa08 by goroutine 20:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0x8e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa08 by goroutine 14:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0xaa
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 20 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 14 (finished) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c00012aa08 by goroutine 19:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0x8e
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Previous write at 0x00c00012aa08 by goroutine 14:
+  math/rand.(*rngSource).Uint64()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:244 +0xaa
+  math/rand.(*rngSource).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rng.go:234 +0x1d9
+  math/rand.(*Rand).Int63()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:85 +0x85
+  math/rand.(*Rand).Int31()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:99 +0x9a
+  math/rand.(*Rand).Int31n()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:134 +0x4f
+  math/rand.(*Rand).Intn()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/math/rand/rand.go:172 +0x59
+  github.com/brianvoe/gofakeit/v6.randIntRange()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/helpers.go:151 +0x64
+  github.com/brianvoe/gofakeit/v6.number()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/number.go:15 +0x45
+  github.com/brianvoe/gofakeit/v6.appVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:44 +0xb9
+  github.com/brianvoe/gofakeit/v6.(*Faker).AppVersion()
+      /Users/ksamigullin/go/pkg/mod/github.com/brianvoe/gofakeit/v6@v6.0.4/app.go:40 +0x1e4
+  go.octolab.org/testing_test.TestSetEnvs.func4.1()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:78 +0xc9
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 19 (running) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+
+Goroutine 14 (finished) created at:
+  testing.(*T).Run()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1168 +0x5bb
+  go.octolab.org/testing_test.TestSetEnvs.func4()
+      /Users/ksamigullin/Development/public/pkg/testing/env_test.go:73 +0xb3
+  testing.tRunner()
+      /usr/local/Cellar/go/1.15.7_1/libexec/src/testing/testing.go:1123 +0x202
+==================
+--- FAIL: TestSetEnvs (0.03s)
+    --- FAIL: TestSetEnvs/parallel_run (0.00s)
+        --- FAIL: TestSetEnvs/parallel_run/2 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/6 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/3 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/4 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/1 (0.00s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/9 (0.01s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/5 (0.01s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/8 (0.02s)
+            testing.go:1038: race detected during execution of test
+        --- FAIL: TestSetEnvs/parallel_run/7 (0.03s)
+            testing.go:1038: race detected during execution of test
+    testing.go:1038: race detected during execution of test
+FAIL
+FAIL	go.octolab.org/testing	0.170s
+?   	go.octolab.org/time	[no test files]
+ok  	go.octolab.org/unsafe	(cached)
+FAIL

@@ -44,7 +44,7 @@ func WithArgs(args []string) Option {
 
 func WithCurrentEnv() Option {
 	return func(cmd *exec.Cmd) error {
-		cmd.Env = os.Environ()
+		cmd.Env = append(cmd.Env, os.Environ()...)
 		return nil
 	}
 }
